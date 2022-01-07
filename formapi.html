@@ -30,8 +30,8 @@
 	</style>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div name="root">
-		<div class="displayFlex"><h1>Ip Rights</h1></div>
-		<form method="POST" action="http://localhost:8080" target="_blank">
+		<div class="displayFlex"><h1>Ip Rights [Test only]</h1></div>
+		<form>
 			<div class="displayBlock">
 				<h5>Image</h5>
 				<div><label>File Name</label><input name="FileName" value="AtoArtwork.png"/></div>
@@ -62,7 +62,7 @@
 				<div><input name="RightAdapt" type="checkbox"/>Right to adapt</div>
 				<div><input name="RightLogo" type="checkbox"/>Right to add a logo</div>
 				<div><input name="RightMerch" type="checkbox"/>Merchandising rights</div>
-				<div><label>Rights duration</label><input name="Righturation" value="70"/></div>
+				<div><label>Rights duration</label><input name="Righduration" value="70"/></div>
 				<div><label>Supply Number</label><input name="SupplyNumber" value="1"/></div>
 				<div><label>Exclusive licence</label><input name="RightLicence" value="1"/></div>
 				<div><input name="RightNonReissuance" type="checkbox"/>NFT non-reissuance guarantee</div>
@@ -81,19 +81,46 @@
     <script type="text/javascript">
 		const form = document.querySelector('form');
 		form.addEventListener('submit', handleSubmit);
+		var httpRequest;
 
 		function handleSubmit(event) {
 			event.preventDefault();
 			const data = new FormData(event.target);
 			const value = data.get('FileName');
-			console.log('value', value);
+			//console.log('fileName: ', value);
 			const valueAll = Object.fromEntries(data.entries());
-			console.log('valueAll: ', valueAll);
-			//valueAll.RightAdapt = data.get("RightAdapt");
+
+			const source = { CheckValues: "N" };
+			Object.assign(valueAll, source);
 			//console.log('valueAll: ', valueAll);
+
+			console.log('JSON valueAll: ', JSON.stringify(valueAll));
+			makeRequest(JSON.stringify(valueAll));
 			return false; //don't submit
 		}
+
 		// method="POST" action="http://localhost:8080" target="_blank"
+		function makeRequest(JSONValues) {
+			httpRequest = new XMLHttpRequest();
+			if (!httpRequest) {
+				alert('Abandon :( Impossible de créer une instance de XMLHTTP');
+				return false;
+			}
+			httpRequest.onreadystatechange = alertContents;
+			httpRequest.open('POST', 'http://localhost:8080');
+			httpRequest.send(JSONValues);
+		}
+
+		function alertContents() {
+			if (httpRequest.readyState === XMLHttpRequest.DONE) {
+				if (httpRequest.status === 200) {
+					alert(httpRequest.responseText);
+				} else {
+					alert(httpRequest.responseText);
+					//alert('Il y a eu un problème avec la requête.');
+				}
+			}
+		}
 	</script>
 </body>
 </html>
