@@ -17,11 +17,14 @@ yarn react-app:start
 
 ## Parameters
 
-...
+| Parameter | Description |
+| ----------- | ----------- |
+| network | network |
+| ... | ... |
 
 ## Response
 
-...
+The user gets a pdf file in response.
 
 ## Mockup
 
