@@ -5,7 +5,7 @@ An example of a web app interacting with Āto's API.
 ## Install
 
 ```
-cd api-client/packages/react-app
+cd api-client
 npm install
 ```
 
@@ -15,18 +15,13 @@ npm install
 yarn react-app:start
 ```
 
+## Parameters
 
+...
 
+## Response
 
-
-
-
-
-
-
-
-
-
+...
 
 ## Mockup
 
