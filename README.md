@@ -1,31 +1,35 @@
 # API Client
 
-An example of a web app interacting with Āto's API.
+An HTML page interacting with Āto's API.
 
-## Install
+## Overview
 
-```
-cd api-client
-npm install
-```
+The `form.html` page includes a form displaying preset parameters. When the form is submitted, the API sends a pdf file in response. 
 
-## Run
+## Test
 
-```
-yarn react-app:start
-```
+Clone this repo, open `form.html`, and click on `Submit`.
 
-## Parameters
+## Authentication
 
-| Parameter | Description |
-| ----------- | ----------- |
-| network | network |
-| ... | ... |
+There is no access restriction on this demo version. 
 
-## Response
+## Change log
 
-The user gets a pdf file in response.
+- v0.9 Initial version (beta test)
 
-## Mockup
+## Next steps
 
-[https://whimsical.com/api-client-mockup-NMyNhZLHBNeRPJxASo3BgC](https://whimsical.com/api-client-mockup-NMyNhZLHBNeRPJxASo3BgC)
+- Provide a complete documentation 
+- Offer a React version of the HTML page (`react-example/`)
+- Add an example of the storage can be implemented 
+- Add an example of how the license can be added to NFTs' metadata
+
+## Support
+
+- Email: [julien@ato.network](mailto:julien@ato.network)
+- Discord: [https://discord.gg/2sFr3dqvfg](https://discord.gg/2sFr3dqvfg)
+- Twitter: [https://twitter.com/julienbrg](https://twitter.com/julienbrg)
+
+
+
