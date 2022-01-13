@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head>  
     <meta charset="utf-8" />
     <link rel="icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,10 +23,12 @@
 		}
 		.displayBlock {
 			margin-left: 10px;
+			margin-right: 10px;
 			margin-top: 10px;
 			border: 2px solid black;
 			padding-left: 10px;
 			padding-bottom: 5px;
+			padding-top: 5px;
 		}
 		label {
 			margin-right: 5px;
@@ -40,25 +42,26 @@
 	</style>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div name="root">
-		<div class="displayFlex"><h1>Rights Licensing for NFT - Pdf Generator</h1></div>
+		<div class="displayFlex"><h1>Āto IP License Generator</h1></div>
+		<div class="displayFlex"><h2>Āto API v0.9-beta Client</h2></div>
 		<form>
 			<div class="displayBlock" style="border-color: red;">
 				<h5>Artwork</h5>
-				<div><label style="min-width: 120px;">Name:</label><input name="ArtworkName" value="AtoTest" type="text" minlength="1" maxlength="32" size="40"/></div>
-				<div><label style="min-width: 120px;">Symbol:</label><input name="ArtworkSymbole" value="ATOT" type="text" minlength="3" maxlength="6" size="10"/></div>
+				<div><label style="min-width: 120px;">Name:</label><input name="ArtworkName" value="Test" type="text" minlength="1" maxlength="32" size="40"/></div>
+				<div><label style="min-width: 120px;">Symbol:</label><input name="ArtworkSymbole" value="ONE" type="text" minlength="3" maxlength="6" size="10"/></div>
 				<div><label>Artwork Description:</label></div>
 				<div><textarea style="resize: none;" name="ArtworkDesc" rows="10" cols="80" maxlength="1000" minlength="10">This is a test.</textarea></div>
 			</div>
 			<div class="displayBlock">
 				<h5>Image</h5>
-				<div><label style="min-width: 80px;">File Name:</label><input name="FileName" value="AtoArtwork.png" type="text" minlength="1" maxlength="32" size="40" title="File name of Artwork" required/></div>
+				<div><label style="min-width: 80px;">File Name:</label><input name="FileName" value="artwork.png" type="text" minlength="1" maxlength="32" size="40" title="File name of Artwork" required/></div>
 				<div><label style="min-width: 80px;">File Type:</label><input name="FileType" value="png" type="text" minlength="1" maxlength="8" size="10" title="File type of Artwork, ex: png, gif, jpeg, ..." required/></div>
 				<div><label style="min-width: 80px;">File Size:</label><input name="FileSize" value="24000" type="number" min="1" max="40000000" size="10" title="Size of Artwork in Bytes (max: 40,000,000)" required/></div>
 			</div>
 			<div class="displayBlock" style="border-color: green;">
 				<h5>Artist</h5>
-				<div><label style="min-width: 80px;">Name:</label><input name="ArtistName" value="Julien"/></div>
-				<div><label style="min-width: 80px;">Address:</label><input name="ArtistAddr" value="0x0000000000000000000000000000000000000000" type="text" minlength="42" maxlength="42"  size="50"/></div>
+				<div><label style="min-width: 80px;">Name:</label><input name="ArtistName" value="Francis"/></div>
+				<div><label style="min-width: 80px;">Address:</label><input name="ArtistAddr" value="0x8888888888888888888888888888888888888888" type="text" minlength="42" maxlength="42"  size="50"/></div>
 				<div><label style="min-width: 76px;">Network:</label>
 					<select name="ListNetwork">
 						<option>Polygon</option>
@@ -101,7 +104,7 @@
 		</form>
 		<a id="downloadLink" style="display: none" href=""></a>
 		<div id="loader" style="z-index: 5; top: 100px; left: 100px; display: none; position: absolute;">
-			<img src="96x96.gif" />
+			<img src="loader.gif" />
 		</div>
 	</div>
     <script type="text/javascript">
@@ -182,7 +185,7 @@
 				return false;
 			}
 			httpRequest.onreadystatechange = alertContents;
-			httpRequest.open('POST', 'http://195.15.234.141:8080');
+			httpRequest.open('POST', 'https://ato-api.jcloud-ver-jpe.ik-server.com');
 			httpRequest.responseType = 'arraybuffer';
 			httpRequest.send(JSONValues);
 		}
