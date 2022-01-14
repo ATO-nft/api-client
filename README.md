@@ -8,7 +8,7 @@ The [`form.html`](https://github.com/ATO-nft/api-client/blob/main/form.html) pag
 
 ## Test
 
-Go to [this web page](https://strat.cc/form.html) and click on the `Submit` button.
+Go to [this web page](https://ato.works/) and click on the `Submit` button.
 
 ## Authentication
 
