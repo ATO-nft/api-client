@@ -5,7 +5,7 @@
     <link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAACMuAAAjLgAAAAAAAAAAAAAAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AwMD/wQEBP8EBAT/AwMD/wMDA/8DAwP/AgIC/wAAAP8DAwP/BAQE/wQEBP8DAwP/AAAA/wAAAP8AAAD/AgIC/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8CAgL/AAAA/wAAAP8AAAD/AAAA/wICAv8AAAD/AQEB/wAAAP9fX1//vLy8/6Wlpf9UVFT/dnZ2/2hoaP9bW1v/AAAA/0ZGRv+ysrL/t7e3/1BQUP8AAAD/AgIC/wAAAP+Ojo7/9PT0/35+fv+ampr//////9LS0v+wsLD/iYmJ/01NTf//////j4+P/4aGhv/6+vr/dXV1/wAAAP8oKCj/6+vr/ykpKf8AAAD/AAAA/3BwcP/c3Nz/pKSk/5eXl//Nzc3/W1tb/wAAAP8AAAD/QUFB/+fn5/8TExP/UFBQ/9XV1f8AAAD/CgoK/wAAAP82Njb/1dXV/6ampv+0tLT/1NTU/yAgIP8BAQH/BgYG/wwMDP/g4OD/NDQ0/x4eHv/s7Oz/PT09/wAAAP8AAAD/h4eH/9zc3P+np6f/kZGR/7m5uf9tbW3/AAAA/wAAAP9WVlb/5OTk/wsLC/8AAAD/dXV1//v7+/+ZmZn/sbGx//j4+P/r6+v/4eHh/8zMzP/Gxsb//////7Gxsf+rq6v//v7+/1xcXP8AAAD/AgIC/wAAAP9ISEj/yMjI/6+vr/9jY2P/ioqK/9jY2P/a2tr/iYmJ/4qKiv+bm5v/k5OT/zMzM/8AAAD/AgIC/wICAv8AAAD/LS0t/9TU1P/Nzc3/6Ojo/yYmJv+FhYX/jY2N/wAAAP8EBAT/AAAA/wAAAP8AAAD/AgIC/wAAAP8AAAD/AAAA/wUFBf8RERH/EBAQ/w8PD/8HBwf/CAgI/wkJCf8EBAT/BAQE/wQEBP8EBAT/AgIC/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wEBAf8BAQH/AQEB/wAAAP8BAQH/AQEB/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Āto API v0.9.1-beta" />
+    <meta name="description" content="Āto API v0.9.3-beta" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,7 +13,7 @@
       crossorigin="anonymous"
     />
 	<script src="https://cdn.jsdelivr.net/gh/emn178/js-sha3/build/sha3.min.js"></script>
-    <title>Āto API v0.9.1-beta</title>
+    <title>Āto API v0.9.3-beta</title>
 
   </head>
   <body onload="bodyLoad()">
@@ -41,25 +41,38 @@
 	</style>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div name="root">
-		<div class="displayFlex"><h1>Rights Licensing for NFT - Pdf Generator</h1></div>
+		<div class="displayFlex"><h1>Āto IP License Generator</h1></div>
+		<div class="displayFlex"><h2>Āto API v0.9.3-beta Client</h2></div>
 		<form>
 			<div class="displayBlock" style="border-color: red;">
 				<h5>Artwork</h5>
-				<div><label style="min-width: 120px;">Name:</label><input name="ArtworkName" value="AtoTest" type="text" minlength="1" maxlength="32" size="40"/></div>
-				<div><label style="min-width: 120px;">Symbol:</label><input name="ArtworkSymbole" value="ATOT" type="text" minlength="3" maxlength="6" size="10"/></div>
+				<div><label style="min-width: 120px;">Name:</label><input name="ArtworkName" value="NFT #1" type="text" minlength="1" maxlength="32" size="40"/></div>
+				<div><label style="min-width: 116px;">NFT Standard:</label>
+					<select id="NftStandard" name="NftStandard">
+						<option>ERC-721</option>
+						<option>ERC-1155</option>
+					</select>
+				</div>
+				<div><label style="min-width: 116px;">License type:</label>
+					<select id="NftLicence" name="NftLicence">
+						<option>Art</option>
+						<option>Gaming</option>
+						<option>Redeemable</option>
+					</select>
+				</div>
 				<div><label>Artwork Description:</label></div>
-				<div><textarea style="resize: none;" name="ArtworkDesc" rows="10" cols="80" maxlength="1000" minlength="10"></textarea></div>
+				<div><textarea style="resize: none;" name="ArtworkDesc" rows="10" cols="80" maxlength="1000" minlength="10">This is a demo.</textarea></div>
 			</div>
 			<div class="displayBlock">
 				<h5>Image</h5>
-				<div><label style="min-width: 80px;">File Name:</label><input name="FileName" value="AtoArtwork.png" type="text" minlength="1" maxlength="32" size="40" title="File name of Artwork" required/></div>
+				<div><label style="min-width: 80px;">File Name:</label><input name="FileName" value="artwork.png" type="text" minlength="1" maxlength="32" size="40" title="File name of Artwork" required/></div>
 				<div><label style="min-width: 80px;">File Type:</label><input name="FileType" value="png" type="text" minlength="1" maxlength="8" size="10" title="File type of Artwork, ex: png, gif, jpeg, ..." required/></div>
 				<div><label style="min-width: 80px;">File Size:</label><input name="FileSize" value="24000" type="number" min="1" max="40000000" size="10" title="Size of Artwork in Bytes (max: 40,000,000)" required/></div>
 			</div>
 			<div class="displayBlock" style="border-color: green;">
 				<h5>Artist</h5>
-				<div><label style="min-width: 80px;">Name:</label><input name="ArtistName" value="Julien"/></div>
-				<div><label style="min-width: 80px;">Address:</label><input name="ArtistAddr" value="0x0000000000000000000000000000000000000000" type="text" minlength="42" maxlength="42"  size="50"/></div>
+				<div><label style="min-width: 80px;">Name:</label><input name="CreatorName" value="Francis"/></div>
+				<div><label style="min-width: 80px;">Address:</label><input name="CreatorAddress" value="0x0000000000000000000000000000000000000000" type="text" minlength="42" maxlength="42"  size="50"/></div>
 				<div><label style="min-width: 76px;">Network:</label>
 					<select id="ListNetwork" name="ListNetwork">
 						<option>Polygon</option>
@@ -82,11 +95,11 @@
 				</div>
 				<div style="display:table;margin: auto 0;">
 					<div style="display:table-cell;padding-right: 10px"><label>Supply Number:</label><input id="SupplyNumberId" name="SupplyNumber" type="number" value="1" min="1" max="150" size="5" onchange="changeSupplyNumber()"/></div>
-					<div style="display:table-cell;" id="RightLicenceId"><input id="RightLicence" name="RightLicence" type="checkbox"/><label for="RightLicence">Exclusive licence</label></div>
+					<div style="display:table-cell;" id="RightExclusiveId"><input id="RightExclusive" name="RightExclusive" type="checkbox"/><label for="RightExclusive">Exclusive license</label></div>
 				</div>
-				<div><input id="RightNonReissuance" name="RightNonReissuance" type="checkbox"/><label for="RightNonReissuance">NFT non-reissuance guarantee</label></div>
+				<div><input id="NonReissuance" name="NonReissuance" type="checkbox"/><label for="NonReissuance">NFT non-reissuance guarantee</label></div>
 				<div><label>Resale Right Percentage:</label>
-					<select id="rightResaleSelector" name="RightResalePcent" style="min-width: 100px;">
+					<select id="rightResaleSelector" name="ResaleRight" style="min-width: 100px;">
 					</select>
 				</div>
 			</div>
@@ -98,21 +111,14 @@
 			<div class="displayBlock" style="border-color: #f8f800;">
 				<h5>Divers</h5>
 				<div><label style="min-width: 76px;">Api version:</label>
-					<select id="ListApi" name="ListApi">
+					<select id="VersionApi" name="VersionApi">
 						<option>v1.0</option>
 					</select>
 				</div>
-				<div><label style="min-width: 76px;">Pdf type:</label>
-					<select id="ListPdf" name="ListPdf">
-						<option>NFT</option>
-						<option>NFT Games</option>
-						<option>NFT Metavers</option>
-					</select>
-				</div>
-				<div><input id="CmdCheckId" name="CmdCheck" type="checkbox"/><label for="CmdCheckId">Verify inputs datas only (no Pdf)</label></div>
+				<div><input id="CmdCheckId" name="CmdCheck" type="checkbox"/><label for="CmdCheckId">Data validation only (no Pdf)</label></div>
 			</div>
 			<div style="margin-top: 20px; margin-left: 100px;">
-				<button type="submit" style="padding-left: 20px; padding-right: 20px;margin-bottom: 20px;">Download pdf</button>
+				<button type="submit" style="padding-left: 20px; padding-right: 20px;margin-bottom: 20px;">Download License</button>
 			</div>
 		</form>
 		<div><input id="signature" name="signature" type="text" value="" hidden/></div>
@@ -164,12 +170,12 @@
 
 		function changeSupplyNumber() {
 			let supplyNumberId = document.getElementById("SupplyNumberId");
-			let rightLicenceId = document.getElementById("RightLicenceId");
+			let RightExclusiveId = document.getElementById("RightExclusiveId");
 			if (supplyNumberId.value === '1') {
-				rightLicenceId.style.display="block";
+				RightExclusiveId.style.display="block";
 			}
 			else {
-				rightLicenceId.style.display="none";
+				RightExclusiveId.style.display="none";
 			}
 		}
 
@@ -202,8 +208,7 @@
 
 		function compacte(jsonStringParam) {
 			var hash = keccak_256(jsonStringParam).toString();
-			//console.log('keccak(hex): ' + keccak_256(jsonStringParam).toString('hex'));
-			console.log('keccak: ' + hash);
+			//console.log('keccak: ' + hash);
 		}
 
 		async function strEncode(stringToEncode) {
@@ -211,7 +216,7 @@
 			//console.log('publicKey.json: ' + JSONpublicKey);
 			await crypto.subtle.importKey(
 				"jwk",
-				JSON.parse(document.getElementById("signature").value), //str2ab(window.atob(
+				JSON.parse(document.getElementById("signature").value),
 				{
 					name: "RSA-OAEP",
         			hash: {name: "SHA-256"}
@@ -220,7 +225,6 @@
 			)
 			.then(function(publickey){
 				publicKey = publickey;
-				//console.log(publicKey);
 			})
 			.catch(function(err){
 				console.error(err);
@@ -239,19 +243,10 @@
 			return ab2str(encryptedUri);
 		}
 
-		function b64EncodeUnicode(str) {
-    		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-        		return String.fromCharCode(parseInt(p1, 16));
-    		}))
-		}
-
 		async function handleSubmit(event) {
 			var demo = false;
 			event.preventDefault();
 			if (document.getElementById("userKey").value === "") {
-				//alert('No user Key');
-				//return false;
-				//mode demo
 				demo = true;
 			} else {
 				if (document.getElementById("signature").value === "") {
@@ -268,18 +263,16 @@
 			const data = new FormData(event.target);
 			const valueAll = Object.fromEntries(data.entries());
 			var jsonString = JSON.stringify(valueAll);
-			//console.log('JSON valueAll: ', jsonString);
 			var encodedString = "";
 
 			if (!demo) {
 				var hash = keccak_256(jsonString).toString();
-				console.log('keccak_256: ' + hash);
+				//console.log('keccak_256: ' + hash);
 				encodedString = await strEncode(hash);
-				//console.log('The encrypted string: '+ encodedString);
-				console.log('The encrypted string: '+ btoa(encodedString));
+				//console.log('The encrypted string: '+ btoa(encodedString));
 				encodedString = btoa(encodedString);
 			}
-			makeRequest(jsonString, encodedString, document.getElementById("ListNetwork").value, document.getElementById("ListApi").value);
+			makeRequest(jsonString, encodedString, document.getElementById("ListNetwork").value, document.getElementById("VersionApi").value);
 			return false; //don't submit !!!
 		}
 
@@ -291,7 +284,8 @@
 			}
 			httpRequest.onreadystatechange = alertContents;
 			//xmlhttp.onerror = function() { alert("Not Connected"); }
-			httpRequest.open('POST', 'http://localhost:8080');
+			//httpRequest.open('POST', 'http://localhost:8080');
+			httpRequest.open('POST', 'http://195.15.234.141:8080');
 			//httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
 
 			let data = new FormData();
@@ -319,7 +313,7 @@
 					let a = document.getElementById("downloadLink");
 					a.href = url;
 					if (fileName === undefined || fileName === "" ) {
-						fileName = "IP_Licence.pdf";
+						fileName = "IP_License.pdf";
 					}
 					a.download = fileName;
 					a.click();
@@ -338,6 +332,12 @@
 				}
 			}
 		}
+		/*
+		function b64EncodeUnicode(str) {
+    		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        		return String.fromCharCode(parseInt(p1, 16));
+    		}))
+		}
 
 		function toHex(str) {
 			var hex = '';
@@ -355,7 +355,7 @@
 				byte => byte.toString(16).padStart(2, "0")
 			).join("");
 		}
-
+		*/
 	</script>
 </body>
 </html>
