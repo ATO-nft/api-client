@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Body, Button, Header, SuperButton } from "./components";
 import useWeb3Modal from "./hooks/useWeb3Modal";
 import GET_TRANSFERS from "./graphql/subgraph";
+import { addresses, abis } from "@project/contracts";
+import { Contract } from "@ethersproject/contracts";
+
+// import { getDefaultProvider } from "@ethersproject/providers";
 
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 
@@ -55,7 +59,7 @@ function App() {
   
   const { loading, error, data } = useQuery(GET_TRANSFERS);
   const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
-  // const [account, setAccount] = useState("");
+  const [account, setAccount] = useState("");
 
   useEffect(() => {
     async function fetchAccount() {
@@ -64,8 +68,8 @@ function App() {
           return;
         }
 
-        // const accounts = await provider.listAccounts();
-        // setAccount(accounts[0]);
+        const accounts = await provider.listAccounts();
+        setAccount(accounts[0]);
         
       } catch (err) {
         // setAccount("");
@@ -75,54 +79,31 @@ function App() {
     fetchAccount();    
   },);
 
-  async function request() {
-
-    // TO DO: add static values
-
-    const form = document.querySelector('form');
-		form.addEventListener('submit', handleSubmit);
-		var httpRequest;
-
-		function handleSubmit(event) {
-			event.preventDefault();
-			const data = new FormData(event.target);
-			// const value = data.get('FileName');
-			//console.log('fileName: ', value);
-			const valueAll = Object.fromEntries(data.entries());
-
-			const source = { CheckValues: "N" };
-			Object.assign(valueAll, source);
-			//console.log('valueAll: ', valueAll);
-
-			console.log('JSON valueAll: ', JSON.stringify(valueAll));
-			makeRequest(JSON.stringify(valueAll));
-			return false; //don't submit
-		}
-
-		// method="POST" action="http://localhost:8080" target="_blank"
-		function makeRequest(JSONValues) {
-			httpRequest = new XMLHttpRequest();
-			if (!httpRequest) {
-				alert('Abandon :( Impossible de créer une instance de XMLHTTP');
-				return false;
-			}
-			httpRequest.onreadystatechange = alertContents;
-			httpRequest.open('POST', 'http://localhost:8080');
-			httpRequest.send(JSONValues);
-		}
-
-		function alertContents() {
-			if (httpRequest.readyState === XMLHttpRequest.DONE) {
-				if (httpRequest.status === 200) {
-					alert(httpRequest.responseText);
-				} else {
-					alert(httpRequest.responseText);
-					//alert('Il y a eu un problème avec la requête.');
-				}
-			}
-		}
-
+  async function mint() {
     try {
+      // const defaultProvider = getDefaultProvider(4);
+      const signer = provider.getSigner(0);
+
+
+      const loderunner = new Contract(addresses.lodeRunner, abis.loderunner, signer);
+      const to = account;
+      const uri = "bafkreib23kegjhehve76nczruvq5xixyxooe5yu2k6wtyg3meqs2dinoti";
+
+      const mintOne = await loderunner.safeMint(to, uri);
+      
+      // const idRaw = await mintOne.id();
+      // const id = idRaw.toString();
+      
+      console.log("tx hash:", mintOne.hash);
+
+      console.log("contract address:", loderunner.address);
+      console.log("NFT id:", 1);
+
+      //const thistle = new Contract(addresses.thistle, abis.thistle, defaultProvider);
+      //const image = await thistle.tokenURI(id);
+      
+      // console.log("image: ", image);
+      // setImg(image);
       
     } catch (err) {
       console.error(err);
@@ -130,8 +111,6 @@ function App() {
       
     }
   }  
-
-  
 
   React.useEffect(() => {
     if (!loading && !error && data && data.transfers) {
@@ -149,8 +128,8 @@ function App() {
           Status: <strong>all parameters set</strong>
         </p>
         
-        <SuperButton onClick={request}>
-          Download PDF
+        <SuperButton onClick={mint}>
+          Mint
         </SuperButton>
         
       </Body>
