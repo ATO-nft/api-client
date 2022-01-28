@@ -24,10 +24,12 @@
 		}
 		.displayBlock {
 			margin-left: 10px;
+			margin-right: 10px;
 			margin-top: 10px;
 			border: 2px solid black;
 			padding-left: 10px;
 			padding-bottom: 5px;
+			padding-top: 5px;
 		}
 		label {
 			margin-right: 5px;
@@ -84,7 +86,7 @@
 			<div class="displayBlock" style="border-color: blue;">
 				<h5>Rights</h5>
 				<div style="display:table;margin: auto 0;">
-					<div style="display:table-cell;padding-right: 10px"><label>Level:</label><input id="RightLevelId" name="RightLevel" type="number" value="1" min="1" max="3" size="5" onchange="changeLevel()" onkeydown="return false;"/></div>
+					<div style="display:table-cell;padding-right: 10px"><label>Level:</label><input id="RightLevelId" name="RightLevel" type="number" value="3" min="1" max="3" size="5" onchange="changeLevel()" onkeydown="return false;"/></div>
 					<div style="display:table-cell;padding-right: 10px;display: none" id="RightAdaptId"><input id="RightAdapt" name="RightAdapt" type="checkbox"/><label for="RightAdapt">Right to adapt</label></div>
 					<div style="display:table-cell;padding-right: 10px;display: none" id="RightLogoId"><input id="RightLogo" name="RightLogo" type="checkbox"/><label for="RightLogo">Right to add a logo</label></div>
 					<div style="display:table-cell;display: none" id="RightMerchId"><input id="RightMerch" name="RightMerch" type="checkbox"/><label for="RightMerch">Merchandising rights</label></div>
@@ -95,9 +97,9 @@
 				</div>
 				<div style="display:table;margin: auto 0;">
 					<div style="display:table-cell;padding-right: 10px"><label>Supply Number:</label><input id="SupplyNumberId" name="SupplyNumber" type="number" value="1" min="1" max="150" size="5" onchange="changeSupplyNumber()"/></div>
-					<div style="display:table-cell;" id="RightExclusiveId"><input id="RightExclusive" name="RightExclusive" type="checkbox"/><label for="RightExclusive">Exclusive license</label></div>
+					<div style="display:table-cell;" id="RightExclusiveId"><input id="RightExclusive" name="RightExclusive" type="checkbox" checked/><label for="RightExclusive">Exclusive license</label></div>
 				</div>
-				<div><input id="NonReissuance" name="NonReissuance" type="checkbox"/><label for="NonReissuance">NFT non-reissuance guarantee</label></div>
+				<div><input id="NonReissuance" name="NonReissuance" type="checkbox" checked/><label for="NonReissuance">NFT non-reissuance guarantee</label></div>
 				<div><label>Resale Right Percentage:</label>
 					<select id="rightResaleSelector" name="ResaleRight" style="min-width: 100px;">
 					</select>
@@ -106,7 +108,7 @@
 			<div class="displayBlock" style="border-color: red;">
 				<h5>Pro version</h5>
 				<div><label>User address: </label><input id="userKey" name="userKey" type="text" value="" type="text" minlength="42" maxlength="42" size="50" /></div>
-				<div><label>File Key: </label><input type="file" onchange="loadKey(this)"/></div>
+				<div><label>Key File: </label><input type="file" onchange="loadKey(this)"/></div>
 			</div>
 			<div class="displayBlock" style="border-color: #f8f800;">
 				<h5>Divers</h5>
@@ -133,6 +135,7 @@
 		var httpRequest;
 
 		function bodyLoad() {
+			changeLevel();
 			let yearsSelector = document.getElementById("yearsSelector");
 			for (i = 1; i < 71; i++) {
 				var opt = document.createElement('option');
@@ -145,6 +148,7 @@
 			for (i = 0; i < 10; i++) {
 				var opt = document.createElement('option');
 				opt.value = "" + i;
+				if (i === 8) opt.selected = true;
 				opt.innerHTML = i + ".0 %";
 				rightResaleSelector.appendChild(opt);
 				var opt = document.createElement('option');
@@ -284,9 +288,15 @@
 			}
 			httpRequest.onreadystatechange = alertContents;
 			//xmlhttp.onerror = function() { alert("Not Connected"); }
-			//httpRequest.open('POST', 'http://localhost:8080');
-			httpRequest.open('POST', 'http://195.15.234.141:8080');
-			//httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+			let httpSsl = "http://";
+			let hostName = window.location.href;
+			console.log('http: ' + hostName);
+			if(hostName.match("https://")) {
+				httpSsl = "https://";
+			}
+			//httpRequest.open('POST', httpSsl + 'localhost:8080');
+			httpRequest.open('POST', httpSsl + 'ato-api.jcloud-ver-jpe.ik-server.com');
+			// httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
 
 			let data = new FormData();
 			data.append('json', JSONValues);
