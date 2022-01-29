@@ -6,7 +6,7 @@ import GET_TRANSFERS from "./graphql/subgraph";
 import { addresses, abis } from "@project/contracts";
 import { Contract } from "@ethersproject/contracts";
 import { getDefaultProvider } from "@ethersproject/providers";
-import { metadata } from "./components/metadata.js"
+import { metadata } from "./components/metadata.js";
 
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 
