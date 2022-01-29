@@ -60,6 +60,7 @@ function App() {
   const { loading, error, data } = useQuery(GET_TRANSFERS);
   const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
   const [account, setAccount] = useState("");
+  const [txBeingSent, setTxBeingSent] = useState(false);
 
   useEffect(() => {
     async function fetchAccount() {
@@ -81,15 +82,22 @@ function App() {
 
   async function mint() {
     try {
+      setTxBeingSent(true);
       // const defaultProvider = getDefaultProvider(4);
       const signer = provider.getSigner(0);
 
 
       const loderunner = new Contract(addresses.lodeRunner, abis.loderunner, signer);
-      const to = account;
       const uri = "bafkreib23kegjhehve76nczruvq5xixyxooe5yu2k6wtyg3meqs2dinoti";
+      const mintOne = await loderunner.safeMint(account, uri);
 
-      const mintOne = await loderunner.safeMint(to, uri);
+      const receipt = await mintOne.wait();
+
+      if (receipt.status === 0) {
+          throw new Error("Failed");
+      }
+
+      
       
       // const idRaw = await mintOne.id();
       // const id = idRaw.toString();
@@ -108,6 +116,8 @@ function App() {
     } catch (err) {
       console.error(err);
     } finally {
+      setTxBeingSent(false);
+      // window.location.reload();
       
     }
   }  
@@ -127,6 +137,12 @@ function App() {
         <p>
           Status: <strong>all parameters set</strong>
         </p>
+
+        {txBeingSent === true &&
+        <p>
+          Processing... 😉
+        </p>
+        }
         
         <SuperButton onClick={mint}>
           Mint
