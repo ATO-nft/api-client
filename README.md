@@ -4,7 +4,9 @@ Create intellectual property licenses for all your NFTs.
 
 ## Overview
 
-The [`ato-api-form.html`](https://github.com/ATO-nft/api-client/blob/main/ato-api-form.html) page includes a form displaying parameters to set. When the form is submitted, the API sends an intellectual property license (pdf file) in response (in English and French). This file can then be stored and added to the NFT metadata. 
+The [`ato-api-form.html`](https://github.com/ATO-nft/api-client/blob/main/ato-api-form.html) page includes a form displaying parameters to set. When the form is submitted, the API sends an intellectual property license (a PDF file) in response (in English and French). This file can then be stored and added to the NFT metadata.
+
+A complete integration guide will be available at [https://ato.works](https://ato.works).
 
 ## Test
 
@@ -28,6 +30,14 @@ To use the testnet version, please contact us to get your API key ([Discord](htt
 #### v0.9.0-beta 
 
 - Initial version
+
+## Example
+
+The React app ([`packages/`](https://github.com/ATO-nft/api-client/tree/main/packages)) is currently under development.
+
+```
+yarn react-app:start
+```
 
 ## Support
 

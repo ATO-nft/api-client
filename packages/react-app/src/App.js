@@ -5,8 +5,8 @@ import useWeb3Modal from "./hooks/useWeb3Modal";
 import GET_TRANSFERS from "./graphql/subgraph";
 import { addresses, abis } from "@project/contracts";
 import { Contract } from "@ethersproject/contracts";
-
-// import { getDefaultProvider } from "@ethersproject/providers";
+import { getDefaultProvider } from "@ethersproject/providers";
+import { metadata } from "./components/metadata.js";
 
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 
@@ -55,11 +55,14 @@ function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
   );
 }
 
+console.log("metadata: ",metadata);
+
 function App() {
   
   const { loading, error, data } = useQuery(GET_TRANSFERS);
   const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
   const [account, setAccount] = useState("");
+  const [txBeingSent, setTxBeingSent] = useState(false);
 
   useEffect(() => {
     async function fetchAccount() {
@@ -81,34 +84,33 @@ function App() {
 
   async function mint() {
     try {
-      // const defaultProvider = getDefaultProvider(4);
+
+      // TO DO: check if user is on the right network
+      const defaultProvider = getDefaultProvider(4);
+      console.log("defaultProvider", defaultProvider);
+
+      setTxBeingSent(true);
       const signer = provider.getSigner(0);
-
-
       const loderunner = new Contract(addresses.lodeRunner, abis.loderunner, signer);
-      const to = account;
       const uri = "bafkreib23kegjhehve76nczruvq5xixyxooe5yu2k6wtyg3meqs2dinoti";
+      const mintOne = await loderunner.safeMint(account, uri);
 
-      const mintOne = await loderunner.safeMint(to, uri);
-      
-      // const idRaw = await mintOne.id();
-      // const id = idRaw.toString();
+      const receipt = await mintOne.wait();
+
+      if (receipt.status === 0) {
+          throw new Error("Failed");
+      }
       
       console.log("tx hash:", mintOne.hash);
-
       console.log("contract address:", loderunner.address);
+
+      // TO DO: retrieve the ID of the NFT that was just minted
       console.log("NFT id:", 1);
 
-      //const thistle = new Contract(addresses.thistle, abis.thistle, defaultProvider);
-      //const image = await thistle.tokenURI(id);
-      
-      // console.log("image: ", image);
-      // setImg(image);
-      
     } catch (err) {
       console.error(err);
     } finally {
-      
+      setTxBeingSent(false);      
     }
   }  
 
@@ -127,6 +129,12 @@ function App() {
         <p>
           Status: <strong>all parameters set</strong>
         </p>
+
+        {txBeingSent === true &&
+        <p>
+          Processing... 😉
+        </p>
+        }
         
         <SuperButton onClick={mint}>
           Mint
