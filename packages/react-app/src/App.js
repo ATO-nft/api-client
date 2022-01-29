@@ -5,8 +5,7 @@ import useWeb3Modal from "./hooks/useWeb3Modal";
 import GET_TRANSFERS from "./graphql/subgraph";
 import { addresses, abis } from "@project/contracts";
 import { Contract } from "@ethersproject/contracts";
-
-// import { getDefaultProvider } from "@ethersproject/providers";
+import { getDefaultProvider } from "@ethersproject/providers";
 
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 
@@ -82,11 +81,13 @@ function App() {
 
   async function mint() {
     try {
+
+      // TO DO: check if user is on the right network
+      const defaultProvider = getDefaultProvider(4);
+      console.log("defaultProvider", defaultProvider);
+
       setTxBeingSent(true);
-      // const defaultProvider = getDefaultProvider(4);
       const signer = provider.getSigner(0);
-
-
       const loderunner = new Contract(addresses.lodeRunner, abis.loderunner, signer);
       const uri = "bafkreib23kegjhehve76nczruvq5xixyxooe5yu2k6wtyg3meqs2dinoti";
       const mintOne = await loderunner.safeMint(account, uri);
@@ -96,29 +97,17 @@ function App() {
       if (receipt.status === 0) {
           throw new Error("Failed");
       }
-
-      
-      
-      // const idRaw = await mintOne.id();
-      // const id = idRaw.toString();
       
       console.log("tx hash:", mintOne.hash);
-
       console.log("contract address:", loderunner.address);
+
+      // TO DO: retrieve the ID of the NFT that was just minted
       console.log("NFT id:", 1);
 
-      //const thistle = new Contract(addresses.thistle, abis.thistle, defaultProvider);
-      //const image = await thistle.tokenURI(id);
-      
-      // console.log("image: ", image);
-      // setImg(image);
-      
     } catch (err) {
       console.error(err);
     } finally {
-      setTxBeingSent(false);
-      // window.location.reload();
-      
+      setTxBeingSent(false);      
     }
   }  
 
