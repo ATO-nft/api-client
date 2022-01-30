@@ -7,7 +7,36 @@ import { addresses, abis } from "@project/contracts";
 import { Contract } from "@ethersproject/contracts";
 import { getDefaultProvider } from "@ethersproject/providers";
 import { metadata } from "./components/metadata.js";
-import { Web3Storage } from 'web3.storage/dist/bundle.esm.min.js'
+import { Web3Storage, File } from 'web3.storage/dist/bundle.esm.min.js'
+
+function getAccessToken() {
+  return "<WEB3_STORAGE_API_TOKEN>"
+}
+
+function makeStorageClient() {
+  return new Web3Storage({ token: getAccessToken() })
+}
+
+function makeFileObjects() {
+
+  const obj = { hello: 'world' }
+  const buffer = Buffer.from(JSON.stringify(obj));
+
+  const files = [
+    new File(['contents-of-file-1'], 'plain-utf8.txt'),
+    new File([buffer], 'hello.json')
+  ]
+  return files
+}
+
+async function storeFiles(files) {
+  const client = makeStorageClient()
+  const cid = await client.put(files)
+  console.log('stored files with cid:', cid)
+  return cid
+}
+
+storeFiles(makeFileObjects())
 
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 
