@@ -7,6 +7,7 @@ import { addresses, abis } from "@project/contracts";
 import { Contract } from "@ethersproject/contracts";
 import { getDefaultProvider } from "@ethersproject/providers";
 import { metadata } from "./components/metadata.js";
+import { Web3Storage } from 'web3.storage/dist/bundle.esm.min.js'
 
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 
