@@ -9,35 +9,6 @@ import { getDefaultProvider } from "@ethersproject/providers";
 import { metadata } from "./components/metadata.js";
 import { Web3Storage, File } from 'web3.storage/dist/bundle.esm.min.js'
 
-function getAccessToken() {
-  return "<WEB3_STORAGE_API_TOKEN>"
-}
-
-function makeStorageClient() {
-  return new Web3Storage({ token: getAccessToken() })
-}
-
-function makeFileObjects() {
-
-  const obj = { hello: 'world' }
-  const buffer = Buffer.from(JSON.stringify(obj));
-
-  const files = [
-    new File(['contents-of-file-1'], 'plain-utf8.txt'),
-    new File([buffer], 'hello.json')
-  ]
-  return files
-}
-
-async function storeFiles(files) {
-  const client = makeStorageClient()
-  const cid = await client.put(files)
-  console.log('stored files with cid:', cid)
-  return cid
-}
-
-storeFiles(makeFileObjects())
-
 function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
 
   const [account, setAccount] = useState("");
@@ -85,7 +56,7 @@ function WalletButton({ provider, loadWeb3Modal, logoutOfWeb3Modal }) {
   );
 }
 
-console.log("metadata: ",metadata);
+console.log("metadata: ", metadata);
 
 function App() {
   
@@ -93,6 +64,7 @@ function App() {
   const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
   const [account, setAccount] = useState("");
   const [txBeingSent, setTxBeingSent] = useState(false);
+  // const [x, setX] = useState("");
 
   useEffect(() => {
     async function fetchAccount() {
@@ -115,6 +87,36 @@ function App() {
   async function mint() {
     try {
 
+      function getAccessToken() {
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEVFYkNDMTBGMDE2MUM1YzU4YzE5MmM3RjgxZmIzRjVGNDhmZDAwQkYiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDM0NzAxOTUwNDUsIm5hbWUiOiJhdG8tYXBpLWNsaWVudCJ9.EJuce0duCNhdQscba4r66-qC5ikdx9UlvJLrUfFV8Nw"
+      }
+      
+      function makeStorageClient() {
+        return new Web3Storage({ token: getAccessToken() })
+      }
+      
+      function makeFileObjects() {
+      
+        const obj = metadata
+        const buffer = Buffer.from(JSON.stringify(obj));
+      
+        const files = [
+          // new File(['contents-of-file-1'], 'plain-utf8.txt'),
+          new File([buffer], 'meta.json')
+        ]
+        return files
+      }
+      
+      async function storeFiles(files) {
+        const client = makeStorageClient()
+        const cid = await client.put(files)
+        console.log('stored files with cid:', cid)
+        
+        return cid
+      }
+
+      // https://ipfs.io/ipfs/bafybeic5z3fbpamhqrbpl4swmqer4n4ogpbrrwow27qytlxzbbbysrd67y/meta.json
+
       // TO DO: check if user is on the right network
       const defaultProvider = getDefaultProvider(4);
       console.log("defaultProvider", defaultProvider);
@@ -122,7 +124,13 @@ function App() {
       setTxBeingSent(true);
       const signer = provider.getSigner(0);
       const loderunner = new Contract(addresses.lodeRunner, abis.loderunner, signer);
-      const uri = "bafkreib23kegjhehve76nczruvq5xixyxooe5yu2k6wtyg3meqs2dinoti";
+
+      const uriRaw = await storeFiles(makeFileObjects())
+      const uri = uriRaw + "/meta.json";
+
+      console.log("uriRaw:", uriRaw);
+      console.log("uri:", uri);
+
       const mintOne = await loderunner.safeMint(account, uri);
 
       const receipt = await mintOne.wait();
@@ -133,15 +141,15 @@ function App() {
       
       console.log("tx hash:", mintOne.hash);
       console.log("contract address:", loderunner.address);
-
-      // TO DO: retrieve the ID of the NFT that was just minted
-      console.log("NFT id:", 1);
+      
+      // TO DO: retrieve the ID of the NFT that was just minted (to redirect user to opensea)
 
     } catch (err) {
       console.error(err);
     } finally {
       setTxBeingSent(false);      
     }
+    
   }  
 
   React.useEffect(() => {
