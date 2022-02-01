@@ -290,13 +290,14 @@
 			//xmlhttp.onerror = function() { alert("Not Connected"); }
 			let httpSsl = "http://";
 			let hostName = window.location.href;
-			console.log('http: ' + hostName);
+			//console.log('http: ' + hostName);
 			if(hostName.match("https://")) {
 				httpSsl = "https://";
 			}
 			//httpRequest.open('POST', httpSsl + 'localhost:8080');
-			httpRequest.open('POST', httpSsl + 'ato-api.jcloud-ver-jpe.ik-server.com');
-			// httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+			httpRequest.open('POST', httpSsl + 'ato-api.jcloud-ver-jpe.ik-server.com'); // ato-api.jcloud-ver-jpe.ik-server.com
+			//httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+			//httpRequest.options('/*', (_, res) => {res.sendStatus(200);});
 
 			let data = new FormData();
 			data.append('json', JSONValues);
