@@ -35,10 +35,6 @@ To use the testnet version, please contact us to get your API key ([Discord](htt
 
 The React app ([`packages/`](https://github.com/ATO-nft/api-client/tree/main/packages)) is currently under development.
 
-#### Versions
-
-- Node: 12.10.0
-
 ```
 yarn react-app:start
 ```
