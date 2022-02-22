@@ -22,11 +22,12 @@
 		.displayFlex {
 			display: flex;
 			justify-content: center;
+			color: white;
 		}
 		.displayBlock {
-			margin-left: 10px;
-			margin-right: 10px;
-			margin-top: 10px;
+			margin-left: 100px;
+			margin-right: 100px;
+			margin-top: 15px;
 			border: 2px solid black;
 			padding-left: 10px;
 			padding-bottom: 5px;
@@ -41,17 +42,36 @@
 		input[type=checkbox] {
 			margin-right: 5px;
 		}
+    body{
+      background: black;
+    }
+    h5, label{
+      color: white;
+
+    }
+    .cadre{
+      background-color: #363636;
+      box-shadow: inset 0 0 2em black;
+      color: white;
+
+    }
+    .selector{
+      background-color: #363636;
+      color: white;
+      border-color: #363636
+    }
+
 	</style>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div name="root">
 		<div class="displayFlex"><h1>Āto IP License Generator</h1></div>
 		<div class="displayFlex"><h2>Āto API v0.9.5-beta Client</h2></div>
 		<form>
-			<div class="displayBlock" style="border-color: red;">
+			<div class="displayBlock" style="border-color: #db4b5e;">
 				<h5>Artwork</h5>
-				<div><label style="min-width: 120px;">Name:</label><input name="ArtworkName" value="NFT #1" type="text" minlength="1" maxlength="32" size="40"/></div>
+				<div><label style="min-width: 120px;">Name:</label><input class="cadre" name="ArtworkName" value="NFT #1" type="text" minlength="1" maxlength="32" size="40"/></div>
 				<div><label style="min-width: 116px;">NFT Standard:</label>
-					<select id="NftStandard" name="NftStandard">
+					<select class="selector" id="NftStandard" name="NftStandard">
 						<option selected>ERC-721</option>
 						<!--
 						<option>ERC-1155</option>
@@ -59,7 +79,7 @@
 					</select>
 				</div>
 				<div><label style="min-width: 116px;">License type:</label>
-					<select id="NftLicence" name="NftLicence">
+					<select class="selector" id="NftLicence" name="NftLicence">
 						<option selected>Art</option>
 						<!--
 						<option>Gaming</option>
@@ -68,69 +88,69 @@
 					</select>
 				</div>
 				<div><label>Artwork Description:</label></div>
-				<div><textarea style="resize: none;" name="ArtworkDesc" rows="10" cols="80" maxlength="1000" minlength="10">This is a demo.</textarea></div>
+				<div><textarea class="cadre" style="resize: none;" name="ArtworkDesc" rows="10" cols="80" maxlength="1000" minlength="10">This is a demo.</textarea></div>
 			</div>
-			<div class="displayBlock">
+			<div class="displayBlock" style="border-color: white;">
 				<h5>Image</h5>
-				<div><label style="min-width: 80px;">File Name:</label><input name="FileName" value="artwork.png" type="text" minlength="1" maxlength="32" size="40" title="File name of Artwork" required/></div>
-				<div><label style="min-width: 80px;">File Type:</label><input name="FileType" value="png" type="text" minlength="1" maxlength="8" size="10" title="File type of Artwork, ex: png, gif, jpeg, ..." required/></div>
-				<div><label style="min-width: 80px;">File Size:</label><input name="FileSize" value="24000" type="number" min="1" max="40000000" size="10" title="Size of Artwork in Bytes (max: 40,000,000)" required/></div>
+				<div><label style="min-width: 80px;">File Name:</label><input class="cadre" name="FileName" value="artwork.png" type="text" minlength="1" maxlength="32" size="40" title="File name of Artwork" required/></div>
+				<div><label style="min-width: 80px;">File Type:</label><input class="cadre" name="FileType" value="png" type="text" minlength="1" maxlength="8" size="10" title="File type of Artwork, ex: png, gif, jpeg, ..." required/></div>
+				<div><label style="min-width: 80px;">File Size:</label><input class="cadre" name="FileSize" value="24000" type="number" min="1" max="40000000" size="10" title="Size of Artwork in Bytes (max: 40,000,000)" required/></div>
 			</div>
-			<div class="displayBlock" style="border-color: green;">
+			<div class="displayBlock" style="border-color: #4bdb91;">
 				<h5>Artist</h5>
-				<div><label style="min-width: 80px;">Name:</label><input name="CreatorName" value="Francis"/></div>
-				<div><label style="min-width: 80px;">Address:</label><input name="CreatorAddress" value="0x0000000000000000000000000000000000000000" type="text" minlength="42" maxlength="42"  size="50"/></div>
+				<div><label style="min-width: 80px;">Name:</label><input class="cadre" name="CreatorName" value="Francis"/></div>
+				<div><label style="min-width: 80px;">Address:</label><input class="cadre" name="CreatorAddress" value="0x0000000000000000000000000000000000000000" type="text" minlength="42" maxlength="42"  size="50"/></div>
 				<div><label style="min-width: 76px;">Network:</label>
-					<select id="ListNetwork" name="ListNetwork">
+					<select class="selector" id="ListNetwork" name="ListNetwork">
 						<option>Polygon</option>
 						<option>Ethereum</option>
 						<option>Rinkeby</option>
 					</select>
 				</div>
 			</div>
-			<div class="displayBlock" style="border-color: blue;">
+			<div class="displayBlock" style="border-color: #4b8edb;">
 				<h5>Rights</h5>
 				<div style="display:table;margin: auto 0;">
-					<div style="display:table-cell;padding-right: 10px"><label>Level:</label><input id="RightLevelId" name="RightLevel" type="number" value="3" min="1" max="3" size="5" onchange="changeLevel()" onkeydown="return false;"/></div>
+					<div style="display:table-cell;padding-right: 10px"><label>Level:</label><input class="cadre" id="RightLevelId" name="RightLevel" type="number" value="3" min="1" max="3" size="5" onchange="changeLevel()" onkeydown="return false;"/></div>
 					<div style="display:table-cell;padding-right: 10px;display: none" id="RightAdaptId"><input id="RightAdapt" name="RightAdapt" type="checkbox"/><label for="RightAdapt">Right to adapt</label></div>
 					<div style="display:table-cell;padding-right: 10px;display: none" id="RightLogoId"><input id="RightLogo" name="RightLogo" type="checkbox"/><label for="RightLogo">Right to add a logo</label></div>
 					<div style="display:table-cell;display: none" id="RightMerchId"><input id="RightMerch" name="RightMerch" type="checkbox"/><label for="RightMerch">Merchandising rights</label></div>
 				</div>
 				<div><label>Rights Duration:</label>
-					<select id="yearsSelector" name="RightDuration" value="70">
+					<select class="selector" id="yearsSelector" name="RightDuration" value="70">
 					</select>
 				</div>
 				<div style="display:table;margin: auto 0;">
-					<div style="display:table-cell;padding-right: 10px"><label>Supply Number:</label><input id="SupplyNumberId" name="SupplyNumber" type="number" value="1" min="1" max="150" size="5" onchange="changeSupplyNumber()"/></div>
+					<div style="display:table-cell;padding-right: 10px"><label>Supply Number:</label><input class="cadre" id="SupplyNumberId" name="SupplyNumber" type="number" value="1" min="1" max="150" size="5" onchange="changeSupplyNumber()"/></div>
 					<div style="display:table-cell;" id="RightExclusiveId"><input id="RightExclusive" name="RightExclusive" type="checkbox" checked/><label for="RightExclusive">Exclusive license</label></div>
 				</div>
 				<div><input id="NonReissuance" name="NonReissuance" type="checkbox" checked/><label for="NonReissuance">NFT non-reissuance guarantee</label></div>
 				<div><label>Resale Right Percentage:</label>
-					<select id="rightResaleSelector" name="ResaleRight" style="min-width: 100px;">
+					<select class="selector" id="rightResaleSelector" name="ResaleRight" style="min-width: 100px;">
 					</select>
 				</div>
 			</div>
-			<div class="displayBlock" id="proBlock" style="border-color: red;">
+			<div class="displayBlock" id="proBlock" style="border-color: #db4b5e;">
 				<h5>Pro version</h5>
-				<div><label>User address: </label><input id="userKey" name="userKey" type="text" value="" type="text" minlength="42" maxlength="42" size="50" /></div>
-				<div><label>Key File: </label><input type="file" onchange="loadKey(this)"/></div>
+				<div><label>User address: </label><input class="cadre" id="userKey" name="userKey" type="text" value="" type="text" minlength="42" maxlength="42" size="50" /></div>
+				<div><label>Key File: </label><input  type="file" onchange="loadKey(this)"/></div>
 			</div>
-			<div class="displayBlock" style="border-color: #f8f800;">
+			<div class="displayBlock" style="border-color: #ffaa21;">
 				<h5>Divers</h5>
 				<div><label style="min-width: 76px;">Api version:</label>
-					<select id="VersionApi" name="VersionApi">
+					<select class="selector" id="VersionApi" name="VersionApi">
 						<option>v1.0</option>
 					</select>
 				</div>
 				<div><input id="CmdCheckId" name="CmdCheck" type="checkbox"/><label for="CmdCheckId">Data validation only (no Pdf)</label></div>
 			</div>
 			<div style="margin-top: 20px; margin-left: 100px;">
-				<button type="submit" style="padding-left: 20px; padding-right: 20px;margin-bottom: 20px;">Download License</button>
+				<button class="selector" type="submit" style="padding-left: 20px; padding-right: 20px;margin-bottom: 20px;">Download License</button>
 			</div>
 		</form>
 		<div><input id="signature" name="signature" type="text" value="" hidden/></div>
 		<a id="downloadLink" style="display: none" href=""></a>
-		<div id="loader" style="z-index: 5; top: 100px; left: 100px; display: none; position: absolute;">
+		<div  id="loader" style="z-index: 5; top: 100px; left: 100px; display: none; position: absolute;">
 			<img src="loader.gif" />
 		</div>
 	</div>
